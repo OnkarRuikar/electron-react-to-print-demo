@@ -1,0 +1,109 @@
+.chart {
+ box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.64);
+ width: 500px;
+ margin-left: 1rem;
+ margin-bottom: 2rem;
+ padding: 1rem;
+}
+
+.pieContainer {
+ height: 150px;
+ position: relative;
+ margin: 2rem auto;
+ left: 25%;
+}
+
+.pieBackground {
+ position: absolute;
+ width: 150px;
+ height: 150px;
+ border-radius: 100%;
+ box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+.pie {
+ transition: all 1s;
+ position: absolute;
+ width: 150px;
+ height: 150px;
+ border-radius: 100%;
+ clip: rect(0px, 75px, 150px, 0px);
+}
+
+.hold {
+ position: absolute;
+ width: 150px;
+ height: 150px;
+ border-radius: 100%;
+ clip: rect(0px, 150px, 150px, 75px);
+}
+
+#pieSlice1 .pie {
+ background-color: #1b458b;
+ transform: rotate(30deg);
+}
+
+#pieSlice2 {
+ transform: rotate(30deg);
+}
+
+#pieSlice2 .pie {
+ background-color: #0a0;
+ transform: rotate(60deg);
+}
+
+#pieSlice3 {
+ transform: rotate(90deg);
+}
+
+#pieSlice3 .pie {
+ background-color: #f80;
+ transform: rotate(120deg);
+}
+
+#pieSlice4 {
+ transform: rotate(210deg);
+}
+
+#pieSlice4 .pie {
+ background-color: #08f;
+ transform: rotate(10deg);
+}
+
+#pieSlice5 {
+ transform: rotate(220deg);
+}
+
+#pieSlice5 .pie {
+ background-color: #a04;
+ transform: rotate(70deg);
+}
+
+#pieSlice6 {
+ transform: rotate(290deg);
+}
+
+#pieSlice6 .pie {
+ background-color: #ffd700;
+ transform: rotate(70deg);
+}
+
+.innerCircle {
+ position: absolute;
+ width: 100px;
+ height: 100px;
+ background-color: #444;
+ border-radius: 100%;
+ top: 25px;
+ left: 25px;
+ box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5) inset;
+ color: white;
+}
+.innerCircle .content {
+ position: absolute;
+ display: block;
+ top: 0px;
+ left: 0;
+ text-align: center;
+ font-size: 14px;
+}
