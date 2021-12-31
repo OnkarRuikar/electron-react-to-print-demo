@@ -15,7 +15,17 @@ if (
 }
 
 function createWindow() {
- mainWindow = new BrowserWindow({ width: 1024, height: 768, show: false });
+ mainWindow = new BrowserWindow({
+  width: 1024,
+  height: 768,
+  show: false,
+  webPreferences: {
+   preload: path.join(__dirname, 'preload.js'),
+   contextIsolation: true,
+   enableRemoteModule: false,
+   nodeIntegration: false,
+  },
+ });
 
  // load the index.html of the app
  let indexPath;
@@ -45,17 +55,10 @@ function createWindow() {
  mainWindow.on('closed', function () {
   mainWindow = null;
 
-  // You need to close windows created for printing at some point.
-  // Otherwise the app may never terminate.
-  BrowserWindow.getAllWindows().forEach((win) => {
-   let isPrint = win.webContents.browserWindowOptions.isPrintWindow;
-   if (isPrint) win.close();
-  });
-
-  // or take the shortcut
-  /*if (process.platform !== 'darwin') {
+  // terminate the app when main window is closed
+  if (process.platform !== 'darwin') {
    app.quit();
-  }*/
+  }
  });
 }
 
@@ -92,10 +95,9 @@ const printOptions = {
  footer: 'Page footer',
 };
 
-ipcMain.on('printComponent', (event, url) => {
+ipcMain.handle('printComponent', (event, url) => {
  let win = new BrowserWindow({
   show: false,
-  isPrintWindow: true /* my custom property */,
   webPreferences: {
    nodeIntegration: true,
   },
@@ -109,4 +111,5 @@ ipcMain.on('printComponent', (event, url) => {
    if (!success) console.log(failureReason);
   });
  });
+ return 'done in main';
 });

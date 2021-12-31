@@ -42,28 +42,24 @@ module.exports = {
    },
   ],
  },
- target: 'electron-renderer',
  plugins: [
   new HtmlWebpackPlugin({
    template: helpers.root('public/index.html'),
    inject: 'body',
   }),
-  new webpack.DefinePlugin({
-   'process.env.NODE_ENV': JSON.stringify('development'),
-  }),
  ],
+ mode: 'development',
+ node: { global: true },
  devtool: 'source-map',
  devServer: {
-  contentBase: OUTPUT_DIR,
-  stats: {
-   colors: true,
-   chunks: false,
-   children: false,
+  static: {
+   directory: path.join(__dirname, OUTPUT_DIR),
   },
-  setup() {
-   spawn('electron', ['.'], { shell: true, env: process.env, stdio: 'inherit' })
-    .on('close', (code) => process.exit(0))
-    .on('error', (spawnError) => console.error(spawnError));
+  compress: true,
+  open: false,
+  port: 9000,
+  client: {
+   overlay: true,
   },
  },
 };
