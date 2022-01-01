@@ -5,4 +5,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   let response = await ipcRenderer.invoke('printComponent', url);
   callback(response);
  },
+ previewComponent: async (url, callback) => {
+  let response = await ipcRenderer.invoke('previewComponent', url);
+  callback(response);
+ },
 });

@@ -29,6 +29,10 @@ export class App extends React.PureComponent {
    return <button style={{ marginLeft: '1rem' }}>Print </button>;
   };
 
+  this.previewTrigger = () => {
+   return <button style={{ marginLeft: '1rem' }}>Preview </button>;
+  };
+
   // Send print request to the Main process
   this.handlePrint = function (target) {
    return new Promise(() => {
@@ -36,10 +40,27 @@ export class App extends React.PureComponent {
 
     let data = target.contentWindow.document.documentElement.outerHTML;
     //console.log(data);
-    var blob = new Blob([data], { type: 'text/html' });
-    var url = URL.createObjectURL(blob);
+    let blob = new Blob([data], { type: 'text/html' });
+    let url = URL.createObjectURL(blob);
 
     window.electronAPI.printComponent(url, (response) => {
+     console.log('Main: ', response);
+    });
+    //console.log('Main: ', data);
+   });
+  };
+
+  // Send print preview request to the Main process
+  this.handlePreview = function (target) {
+   return new Promise(() => {
+    console.log('forwarding print preview request...');
+
+    let data = target.contentWindow.document.documentElement.outerHTML;
+    //console.log(data);
+    let blob = new Blob([data], { type: 'text/html' });
+    let url = URL.createObjectURL(blob);
+
+    window.electronAPI.previewComponent(url, (response) => {
      console.log('Main: ', response);
     });
     //console.log('Main: ', data);
@@ -55,21 +76,37 @@ export class App extends React.PureComponent {
     <div style={{ height: '50vh', width: '80vw' }}>
      <hr />
      <br />
-     <ReactToPrint
-      content={this.getComponent1Ref}
-      documentTitle="First component"
-      trigger={this.printTrigger}
-      print={this.handlePrint}
-     />
+     <span>
+      <ReactToPrint
+       content={this.getComponent1Ref}
+       documentTitle="First component"
+       trigger={this.printTrigger}
+       print={this.handlePrint}
+      />
+      <ReactToPrint
+       content={this.getComponent1Ref}
+       documentTitle="First component"
+       trigger={this.previewTrigger}
+       print={this.handlePreview}
+      />
+     </span>
      <Bill ref={this.setComponent1Ref} />
      <hr />
      <br />
-     <ReactToPrint
-      content={this.getComponent2Ref}
-      documentTitle="Second component"
-      trigger={this.printTrigger}
-      print={this.handlePrint}
-     />
+     <span>
+      <ReactToPrint
+       content={this.getComponent2Ref}
+       documentTitle="Second component"
+       trigger={this.printTrigger}
+       print={this.handlePrint}
+      />
+      <ReactToPrint
+       content={this.getComponent2Ref}
+       documentTitle="Second component"
+       trigger={this.previewTrigger}
+       print={this.handlePreview}
+      />
+     </span>
      <Chart ref={this.setComponent2Ref} color="lightblue" text="Component Two!!" />
     </div>
    </div>

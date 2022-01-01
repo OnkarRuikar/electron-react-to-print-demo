@@ -95,13 +95,9 @@ const printOptions = {
  footer: 'Page footer',
 };
 
+//handle print
 ipcMain.handle('printComponent', (event, url) => {
- let win = new BrowserWindow({
-  show: false,
-  webPreferences: {
-   nodeIntegration: true,
-  },
- });
+ let win = new BrowserWindow({ show: false });
 
  win.loadURL(url);
 
@@ -111,5 +107,31 @@ ipcMain.handle('printComponent', (event, url) => {
    if (!success) console.log(failureReason);
   });
  });
- return 'done in main';
+ return 'shown print dialog';
+});
+
+//handle preview
+ipcMain.handle('previewComponent', (event, url) => {
+ let win = new BrowserWindow({ title: 'Preview', show: false, autoHideMenuBar: true });
+ win.loadURL(url);
+
+ win.webContents.once('did-finish-load', () => {
+  win.webContents.printToPDF(printOptions).then((data) => {
+    let buf = Buffer.from(data);
+    var data = buf.toString('base64');
+    let url = 'data:application/pdf;base64,' + data;
+
+    win.webContents.on('ready-to-show', () => {
+     win.show();
+     win.setTitle('Preview');
+    });
+	
+    win.webContents.on('closed', () => win = null);
+    win.loadURL(url);
+   })
+   .catch((error) => {
+    console.log(error);
+   });
+ });
+ return 'shown preview window';
 });
