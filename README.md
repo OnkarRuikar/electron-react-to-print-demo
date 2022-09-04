@@ -14,7 +14,7 @@ Download and extract the project. Run following commands in the root dir:
 
 ### PDF Printers
 
-To test the app following print to PDF applications can be used:
+To test the app following print to PDF printers can be used:
 - On Linux use [CUPS-PDF](https://www.cups-pdf.de/download.shtml)
 - On Windows use [Microsoft print to PDF](https://pdf.wondershare.com/pdf-knowledge/microsoft-print-to-pdf.html)
 
