@@ -1,12 +1,12 @@
-const {contextBridge, ipcRenderer} = require('electron');
+const {contextBridge, ipcRenderer} = require("electron");
 
-contextBridge.exposeInMainWorld('electronAPI', {
+contextBridge.exposeInMainWorld("electronAPI", {
   printComponent: async (url, callback) => {
-    let response = await ipcRenderer.invoke('printComponent', url);
+    let response = await ipcRenderer.invoke("printComponent", url);
     callback(response);
   },
   previewComponent: async (url, callback) => {
-    let response = await ipcRenderer.invoke('previewComponent', url);
+    let response = await ipcRenderer.invoke("previewComponent", url);
     callback(response);
   },
 });
