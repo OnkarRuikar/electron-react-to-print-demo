@@ -4,6 +4,8 @@ A basic Electron React app that uses [react-to-print](https://github.com/gregnb/
 
 Implementation of `print` method for print-to-react is the crux of the demo. See `handlePrint` method in `App.js`. Also, See `App.css` for CSS print settings.
 
+This uses React function components. If you wish to see the implementation using class components then use branch [class_components](https://github.com/OnkarRuikar/electron-react-to-print-demo/tree/class_components).
+
 ## Setup
 
 Download and extract the project. Run following commands in the root dir:
