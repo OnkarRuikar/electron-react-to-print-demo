@@ -1,43 +1,44 @@
 h1 {
- font-family: helvetica;
- font-weight: 200;
+  font-family: 'Helvetica', Helvetica, Arial, sans-serif;
+  font-weight: 200;
 }
 
 * {
- margin: 0;
- padding: 0;
- font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
- box-sizing: border-box;
- font-size: 14px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  font-size: 14px;
 }
 
 body {
- -webkit-font-smoothing: antialiased;
- -webkit-text-size-adjust: none;
- width: 100% !important;
- height: 100%;
- line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  width: 100% !important;
+  height: 100%;
+  line-height: 1.6;
 }
 
 button {
- margin-bottom: 0.5rem;
- padding: 0.3rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem;
 }
 
 button:hover {
- background-color: rgba(144, 238, 144, 0.39);
- cursor: pointer;
+  background-color: rgba(144, 238, 144, 0.39);
+  cursor: pointer;
 }
 
 /*----------- print settings ----------*/
 @media print {
- @page {
-  size: portrait;
-  margin: 1in;
- }
- body > :first-child {
-  border-radius: 0.5rem;
-  border: 1px dashed gray;
-  overflow: hidden;
- }
+  @page {
+    size: portrait;
+    margin: 1in;
+  }
+
+  body > :first-child {
+    border-radius: 0.5rem;
+    border: 1px dashed gray;
+    overflow: hidden;
+  }
 }
